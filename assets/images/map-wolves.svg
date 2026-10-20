@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Mapa ilustrativo da Wolves Barber no Jardim Noturno">
+  <title>Mapa ilustrativo — Wolves Barber</title>
+  <defs>
+    <pattern id="map-dots" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#35302a"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="#141312"/>
+  <rect x="12" y="12" width="776" height="476" fill="none" stroke="#35302a" stroke-width="2"/>
+  <rect x="30" y="30" width="740" height="440" fill="#111110"/>
+  <g fill="#1a1917" stroke="#2b2824" stroke-width="2">
+    <rect x="48" y="48" width="152" height="98"/>
+    <rect x="228" y="48" width="132" height="98"/>
+    <rect x="388" y="48" width="162" height="98"/>
+    <rect x="578" y="48" width="160" height="98"/>
+    <rect x="48" y="174" width="122" height="104"/>
+    <rect x="198" y="174" width="162" height="104"/>
+    <rect x="388" y="174" width="162" height="104"/>
+    <rect x="578" y="174" width="160" height="104"/>
+    <rect x="48" y="306" width="152" height="132"/>
+    <rect x="228" y="306" width="132" height="132"/>
+    <rect x="388" y="306" width="162" height="132"/>
+    <rect x="578" y="306" width="160" height="132"/>
+  </g>
+  <rect x="578" y="48" width="160" height="98" fill="#1a1917"/>
+  <rect x="578" y="48" width="160" height="98" fill="url(#map-dots)"/>
+  <rect x="578" y="48" width="160" height="98" fill="none" stroke="#a5823e" stroke-width="2"/>
+  <g fill="#a5823e" opacity=".7">
+    <circle cx="612" cy="78" r="7"/>
+    <circle cx="650" cy="96" r="5"/>
+    <circle cx="688" cy="76" r="6"/>
+    <circle cx="710" cy="112" r="4"/>
+    <circle cx="626" cy="118" r="4"/>
+  </g>
+  <g stroke="#c9a45c" stroke-width="2" opacity=".3" stroke-dasharray="6 10">
+    <path d="M30 160 H770"/>
+    <path d="M212 30 V470"/>
+    <path d="M570 30 V470"/>
+  </g>
+  <path d="M30 455 L210 275 L390 275 L570 105 L770 105" fill="none" stroke="#c9a45c" stroke-width="3" opacity=".55"/>
+  <circle cx="420" cy="252" r="54" fill="none" stroke="#c9a45c" stroke-width="2" opacity=".22"/>
+  <path d="M420 196 C394 196 374 217 374 242 C374 274 420 310 420 310 C420 310 466 274 466 242 C466 217 446 196 420 196 Z" fill="#c9a45c"/>
+  <circle cx="420" cy="242" r="14" fill="#111110"/>
+  <g stroke="#35302a" stroke-width="2">
+    <path d="M48 466 H190"/>
+    <path d="M48 460 V472 M78 460 V472 M108 460 V472 M138 460 V472 M168 460 V472 M190 460 V472"/>
+  </g>
+  <path d="M720 380 L738 398 L720 416 L702 398 Z" fill="none" stroke="#c9a45c" stroke-width="2"/>
+  <path d="M720 380 V416 M702 398 H738" stroke="#c9a45c" stroke-width="1" opacity=".5"/>
+</svg>

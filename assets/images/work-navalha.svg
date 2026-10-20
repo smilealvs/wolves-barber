@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Ilustração de navalha, pincel e toalha quente">
+  <title>Navalha e toalha quente</title>
+  <defs>
+    <pattern id="dots-navalha" width="18" height="18" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#35302a"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="1000" fill="#141312"/>
+  <rect x="22" y="22" width="756" height="956" fill="none" stroke="#35302a" stroke-width="2"/>
+  <circle cx="400" cy="460" r="310" fill="#1a1917"/>
+  <circle cx="400" cy="460" r="310" fill="url(#dots-navalha)"/>
+  <circle cx="400" cy="460" r="310" fill="none" stroke="#2b2824" stroke-width="2"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M540 355 L230 625 C210 642 208 668 228 682 L255 695 L560 425 Z" fill="#1a1917" stroke="#c9a45c" stroke-width="6"/>
+    <path d="M540 390 L248 660" stroke="#a5823e" stroke-width="3"/>
+    <path d="M530 368 L220 638" stroke="#f5f2eb" stroke-width="2" opacity=".55"/>
+    <path d="M255 695 L560 425" stroke="#e0c58c" stroke-width="3"/>
+    <path d="M540 355 L675 275 C690 265 705 278 708 293 L570 400 Z" fill="#1a1917" stroke="#f5f2eb" stroke-width="5"/>
+    <path d="M570 395 L690 312" stroke="#a5823e" stroke-width="3"/>
+    <circle cx="550" cy="380" r="15" fill="#111110" stroke="#c9a45c" stroke-width="4"/>
+    <path d="M570 690 C558 612 584 562 620 552 C656 562 682 612 670 690 Z" fill="#1a1917" stroke="#f5f2eb" stroke-width="5"/>
+    <path d="M580 680 C578 630 590 595 612 575 M600 685 C598 632 608 596 620 578 M622 685 C624 638 632 605 640 585 M646 680 C650 645 656 618 660 600" stroke="#c9a45c" stroke-width="3"/>
+    <rect x="600" y="690" width="40" height="160" rx="18" fill="#1a1917" stroke="#f5f2eb" stroke-width="5"/>
+    <path d="M600 710 H640" stroke="#c9a45c" stroke-width="5"/>
+    <path d="M120 760 H360 L385 845 H105 Z" fill="#1a1917" stroke="#c9a45c" stroke-width="5"/>
+    <path d="M120 790 H370 M112 820 H378" stroke="#a5823e" stroke-width="3"/>
+    <ellipse cx="360" cy="802" rx="30" ry="43" fill="#1a1917" stroke="#c9a45c" stroke-width="5"/>
+    <path d="M360 775 C380 785 380 820 360 830" stroke="#a5823e" stroke-width="3"/>
+    <path d="M300 735 C280 710 320 695 300 675" stroke="#f5f2eb" stroke-width="3" opacity=".75"/>
+    <path d="M350 735 C330 710 370 695 350 675" stroke="#f5f2eb" stroke-width="3" opacity=".75"/>
+  </g>
+  <path d="M80 900 H180" stroke="#c9a45c" stroke-width="3"/>
+</svg>

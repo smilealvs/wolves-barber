@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Ilustração da cadeira de barbeiro sob a lâmpada">
+  <title>A cadeira</title>
+  <defs>
+    <pattern id="dots-cadeira" width="18" height="18" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#35302a"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="1000" fill="#141312"/>
+  <rect x="22" y="22" width="756" height="956" fill="none" stroke="#35302a" stroke-width="2"/>
+  <circle cx="400" cy="460" r="310" fill="#1a1917"/>
+  <circle cx="400" cy="460" r="310" fill="url(#dots-cadeira)"/>
+  <circle cx="400" cy="460" r="310" fill="none" stroke="#2b2824" stroke-width="2"/>
+  <path d="M360 280 L440 280 L600 760 L200 760 Z" fill="#211f1c"/>
+  <g fill="none" stroke="#f5f2eb" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M400 100 L400 220"/>
+    <path d="M330 220 H470 L440 280 H360 Z" fill="#1a1917" stroke="#c9a45c"/>
+    <path d="M360 280 V320"/>
+    <path d="M370 320 H430 V360 H370 Z" fill="#242220" stroke="#c9a45c"/>
+    <path d="M320 360 H480 L500 600 H300 Z" fill="#242220" stroke="#c9a45c"/>
+    <path d="M340 410 H460 M335 460 H465 M330 510 H470 M325 560 H475" stroke="#a5823e" stroke-width="3"/>
+    <path d="M280 600 H520 L550 660 H250 Z" fill="#242220" stroke="#c9a45c"/>
+    <path d="M300 600 L280 550 H240 L260 600 M500 600 L520 550 H560 L540 600" stroke="#c9a45c"/>
+    <circle cx="245" cy="552" r="10" fill="#1a1917" stroke="#c9a45c"/>
+    <circle cx="555" cy="552" r="10" fill="#1a1917" stroke="#c9a45c"/>
+    <path d="M380 660 H420 V800 H380 Z" fill="#1a1917" stroke="#c9a45c"/>
+    <path d="M330 800 H470 L490 850 H310 Z" fill="#1a1917" stroke="#c9a45c"/>
+    <path d="M280 900 H520 L540 940 H260 Z" fill="#1a1917" stroke="#c9a45c"/>
+  </g>
+  <path d="M400 440 L420 460 L400 480 L380 460 Z" fill="none" stroke="#c9a45c" stroke-width="3"/>
+  <path d="M80 900 H180" stroke="#c9a45c" stroke-width="3"/>
+</svg>

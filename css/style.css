@@ -1,0 +1,1289 @@
+/* Wolves Barber — "Cadeira à Meia-Noite"
+   Sistema visual: carvão e um único dourado. Chão preto-quente, texto marfim,
+   superfícies elevadas para as faixas de serviço e contato, fios de bronze de
+   1px. Profundidade por regras e campos chapados — nenhuma sombra.
+   Tipografia: Playfair Display (display) sobre Inter (corpo/rótulos). */
+
+:root {
+  color-scheme: dark;
+  --color-ground: #111110;
+  --color-surface: #1a1917;
+  --color-ink: #f5f2eb;
+  --color-ink-soft: #a8a196;
+  --color-ink-mid: #e4e0d8;
+  --color-gold: #c9a45c;
+  --color-gold-soft: #e0c58c;
+  --color-gold-deep: #a5823e;
+  --color-rule: #35302a;
+
+  --radius: 0.25rem;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: Inter, "Segoe UI", Arial, sans-serif;
+
+  /* Curva única de chegada: desaceleração exponencial, sem overshoot. */
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --type-display: clamp(2.7rem, 5.5vw, 5rem);
+  --type-headline: clamp(1.9rem, 3.5vw, 3.05rem);
+  --type-title: 1.375rem;
+  --type-promise: clamp(1.35rem, 1.6vw, 1.55rem);
+  --type-brand: 1.3rem;
+  --type-body: clamp(1rem, 1.15vw, 1.0625rem);
+  --type-body-sm: 0.9375rem;
+  --type-price: 1.0625rem;
+  --type-label: 0.75rem;
+  --type-caption: 0.8125rem;
+
+  --stage: 1200px;
+  --gutter: max(1.5rem, calc((100% - var(--stage)) / 2));
+
+  /* Altura que a rolagem de âncora reserva: header sticky medido fechado,
+     redifinido nos breakpoints que mudam o header. */
+  --scroll-offset: 5.5rem;
+  --scroll-gap: 0.5rem;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: var(--color-rule) var(--color-ground);
+}
+
+body {
+  margin: 0;
+  color: var(--color-ink);
+  background: var(--color-ground);
+  caret-color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  line-height: 1.6;
+}
+
+::selection { color: var(--color-ground); background: var(--color-gold); }
+a { color: inherit; }
+button { font: inherit; }
+img { max-width: 100%; }
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* Caminho de teclado: o link de salto é o primeiro focável da página. */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 20;
+  padding: 0.7rem 1rem;
+  background: var(--color-gold);
+  color: var(--color-ground);
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.skip-link:focus { top: 0.75rem; }
+
+/* Estrutura compartilhada */
+.section__content, .site-footer__inner {
+  width: min(100% - 3rem, var(--stage));
+  margin-inline: auto;
+}
+
+h1, h2, h3, p { overflow-wrap: break-word; }
+h1, h2, h3 { text-wrap: balance; }
+
+h1 {
+  max-width: 15ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--type-display);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-optical-sizing: auto;
+}
+
+.hero__title-line {
+  display: block;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+h2 {
+  max-width: 17ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--type-headline);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  font-optical-sizing: auto;
+}
+
+/* Camada padrão de parágrafo: tamanho e entrelinha andam juntos com o degrau
+   tipográfico; o :where() zera a especificidade de propósito. */
+:where(.section p:not(.section__intro)) {
+  color: var(--color-ink-soft);
+  font-size: var(--type-body);
+  line-height: 1.65;
+}
+
+#inicio, #servicos, #galeria, #avaliacoes, #contato {
+  scroll-margin-top: calc(var(--scroll-offset) + var(--scroll-gap));
+}
+
+/* Cabeçalho — masthead da edição */
+.site-header {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+  min-height: 5.25rem;
+  padding-inline: var(--gutter);
+  border-bottom: 1px solid var(--color-rule);
+  background: var(--color-ground);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.brand__logo {
+  display: block;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--color-rule);
+  border-radius: 50%;
+  background: var(--color-ground);
+  object-fit: cover;
+  transition: border-color 180ms ease;
+}
+
+.brand:hover .brand__logo,
+.brand:focus-visible .brand__logo {
+  border-color: color-mix(in srgb, var(--color-gold) 65%, var(--color-rule));
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.brand__name {
+  font-family: var(--font-display);
+  font-size: var(--type-brand);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.brand__subtitle {
+  color: var(--color-ink-soft);
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+/* Navegação */
+.site-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem 1.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  border-bottom: 1px solid transparent;
+  color: var(--color-ink-soft);
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+
+.site-nav a:hover, .site-nav a:focus-visible {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+/* Você está aqui: sublinhado em marfim, o estado que não é hover. */
+.site-nav a[aria-current="true"] {
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+}
+
+/* O CTA é dourado fixo e não veste a barra de "você está aqui": em repouso ele
+   fica só na cor, para não parecer uma seção selecionada. Quem acende é o hover. */
+.site-nav__cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  color: var(--color-gold);
+  background: none;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+
+.site-nav__cta-button:hover,
+.site-nav__cta-button:focus-visible {
+  border-color: var(--color-gold-soft);
+  color: var(--color-gold-soft);
+}
+
+/* No desktop a ação ganha uma moldura própria: ela precisa se ler como ação
+   antes de o ponteiro chegar. O contorno é fino e usa o mesmo raio dos demais
+   controles; no menu móvel a linha continua sendo uma linha da lista. */
+@media (min-width: 701px) {
+  .site-nav__cta-button {
+    padding: 0.45rem 0.85rem;
+    border: 1px solid color-mix(in srgb, var(--color-gold) 60%, var(--color-rule));
+    border-radius: var(--radius);
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .site-nav__cta-button:hover,
+  .site-nav__cta-button:focus-visible {
+    border-color: var(--color-gold);
+    background: var(--color-gold);
+    color: var(--color-ground);
+  }
+}
+
+/* Menu expansível — mesmo mecanismo da versão anterior: o estado mora no
+   aria-expanded do botão, e `html[data-nav-toggle="ready"]` é o que autoriza
+   o botão a existir; sem JS a nav continua visível. */
+.site-nav__toggle {
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.2rem;
+  border: 0;
+  color: var(--color-ink);
+  background: none;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.site-nav__toggle:hover { color: var(--color-gold); }
+
+.site-nav__toggle-bars {
+  position: relative;
+  display: block;
+  width: 1.3rem;
+  height: 2px;
+  flex: none;
+  background: currentColor;
+  transition: background-color 180ms ease;
+}
+
+.site-nav__toggle-bars::before,
+.site-nav__toggle-bars::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transition: transform 180ms var(--ease-settle);
+}
+
+.site-nav__toggle-bars::before { transform: translateY(-6px); }
+.site-nav__toggle-bars::after { transform: translateY(6px); }
+
+.site-nav__toggle[aria-expanded="true"] { color: var(--color-gold); }
+.site-nav__toggle[aria-expanded="true"] .site-nav__toggle-bars { background: transparent; }
+.site-nav__toggle[aria-expanded="true"] .site-nav__toggle-bars::before {
+  transform: translateY(0) rotate(45deg);
+}
+.site-nav__toggle[aria-expanded="true"] .site-nav__toggle-bars::after {
+  transform: translateY(0) rotate(-45deg);
+}
+
+@keyframes nav-row-in {
+  from { opacity: 0; transform: translateY(-0.4rem); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Herói — a abertura da edição
+   Duas colunas dentro do palco: o texto começa na margem esquerda e o emblema
+   ocupa a metade direita, com a mesma margem do outro lado. O quadro 4/5
+   preserva o desenho inteiro em qualquer largura. */
+.hero {
+  display: grid;
+  grid-template-columns:
+    [full-start] var(--gutter)
+    [text-start] minmax(0, 1fr)
+    [text-end media-start] minmax(0, 1fr)
+    [media-end] var(--gutter)
+    [full-end];
+  align-items: stretch;
+  min-height: calc(100svh - var(--scroll-offset));
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.hero__text {
+  grid-column: text;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2.5rem, 5vh, 4rem) clamp(2rem, 3.5vw, 3.5rem)
+    clamp(2.5rem, 5vh, 4rem) 0;
+}
+
+/* O subtítulo: a promessa em uma linha, logo abaixo do título e antes do
+   convite. Fica no degrau Title e na serifa, para não competir com o h1. */
+.hero__subtitle {
+  max-width: 28ch;
+  margin: 1.4rem 0 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--type-promise);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+}
+
+.hero__deck {
+  max-width: 37ch;
+  margin: 1.5rem 0 0;
+  color: var(--color-ink-mid);
+  font-size: var(--type-body);
+  line-height: 1.65;
+}
+
+.hero__deck em {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+/* Reforço do ensaio: o texto que antes abria a seção "Sobre" sobe para junto
+   da promessa — a página deixa de dizer a mesma coisa em dois lugares. */
+.hero__intro {
+  max-width: 45ch;
+  margin: 1.6rem 0 0;
+  padding-top: 1.35rem;
+  border-top: 1px solid var(--color-rule);
+  color: var(--color-ink-soft);
+  font-size: var(--type-body);
+  line-height: 1.65;
+}
+
+.hero__meta {
+  max-width: 34rem;
+  margin: 1.75rem 0 0;
+  color: var(--color-ink-soft);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+}
+
+/* O convite principal também abre a página: mesma chapa dourada do contato,
+   encostada à esquerda no desktop e centrada quando a hero empilha. */
+.hero__action {
+  align-self: flex-start;
+  margin-top: clamp(1.5rem, 3vw, 1.9rem);
+}
+
+/* A marca viva: a coluna da direita é o quadro do emblema, centrado no palco
+   e preso ao formato 4/5 da arte. A assinatura em HTML fecha a composição sem
+   depender de texto na imagem. */
+.hero__media {
+  position: relative;
+  grid-column: media;
+  align-self: center;
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-ground);
+}
+
+.hero__mark {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero__signature {
+  position: absolute;
+  z-index: 2;
+  bottom: clamp(2.25rem, 9%, 4.5rem);
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0;
+  color: var(--color-ink);
+  text-align: center;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.hero__signature::before {
+  content: "";
+  width: 2.5rem;
+  height: 1px;
+  margin-bottom: 0.55rem;
+  background: var(--color-gold);
+}
+
+.hero__signature span:first-child {
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 2.4vw, 2.1rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.hero__signature span:last-child {
+  color: var(--color-gold-soft);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.42em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* O momento focal: a página se assenta — o negro sobe da marca e o tipo é
+   prensado na página. Só opacity/transform/clip-path; o convite fica de fora
+   da coreografia para chegar inteiro no primeiro quadro. */
+#hero-title {
+  animation: type-set 560ms var(--ease-settle) 60ms backwards;
+}
+
+@keyframes type-set {
+  from { clip-path: inset(-0.6em -0.35em 100% -0.35em); }
+  to { clip-path: inset(-0.6em -0.35em -0.6em -0.35em); }
+}
+
+.hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--color-ground);
+  opacity: 0;
+  pointer-events: none;
+  animation: ink-lift 620ms var(--ease-settle) 80ms backwards;
+}
+
+@keyframes ink-lift {
+  from { opacity: 0.92; }
+  to { opacity: 0; }
+}
+
+.hero__mark {
+  animation: plate-settle 900ms var(--ease-settle) 100ms backwards;
+}
+
+@keyframes plate-settle {
+  from { transform: scale(1.045); }
+  to { transform: scale(1); }
+}
+
+/* Ação — o bloco de chamada: chapa dourada, texto carvão. */
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 3rem;
+  max-width: 100%;
+  padding: 1rem clamp(1.15rem, 2.2vw, 1.7rem);
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius);
+  background: var(--color-gold);
+  color: var(--color-ground);
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 150ms var(--ease-settle);
+}
+
+.action:hover,
+.action:focus-visible {
+  border-color: var(--color-gold-deep);
+  background: var(--color-gold-deep);
+}
+
+.action:active { transform: scale(0.98); }
+
+/* Marca do WhatsApp: glifo preenchido na cor do contexto — dourado quando é
+   um link do menu, carvão quando é o texto da chapa dourada. */
+.icon-whatsapp {
+  flex: none;
+  width: 1.15em;
+  height: 1.15em;
+}
+
+/* Seções */
+.section { padding-block: clamp(4.25rem, 8.5vw, 7rem); }
+.section + .section { border-top: 1px solid var(--color-rule); }
+
+.section__heading { max-width: 44rem; }
+
+/* Os títulos de Serviços e Galeria são curtos: soltos do teto de 17ch, a
+   frase cabe inteira em uma linha em vez de partir no meio. */
+.section--services h2,
+.section--gallery h2 {
+  max-width: none;
+}
+
+.section__intro {
+  max-width: 40rem;
+  margin: 1.1rem 0 0;
+  color: var(--color-ink-soft);
+  font-size: var(--type-body);
+  line-height: 1.65;
+}
+
+/* Serviços — o quadro de preços vira campo de carvão elevado. A
+   especificidade precisa vencer `.section + .section`, senão a faixa herda o
+   fio das seções. */
+.section.section--services {
+  border-top: 0;
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.section--services h2 { color: var(--color-ink); }
+
+.section--services .section__intro { color: var(--color-ink-soft); }
+
+.section--services .section__heading { margin-bottom: clamp(2rem, 4vw, 3rem); }
+
+/* A lista chega em dois blocos lado a lado no desktop: a metade esquerda
+   leva os cinco primeiros serviços, a direita os quatro restantes. O fluxo é
+   por coluna (grid-auto-flow: column), então cada bloco lê de cima para baixo
+   sem intercalar; as linhas compartilham altura e os preços alinham na
+   horizontal. Abaixo de 700px volta à coluna única. O fio de abertura fecha o
+   topo do quadro e cada linha termina no próprio fio, inclusive a última de
+   cada coluna — o pontilhado antigo saiu, ele não tinha o que ligar. */
+.service-ledger {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(5, auto);
+  column-gap: clamp(2rem, 5vw, 3.5rem);
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent);
+  list-style: none;
+}
+
+.service-ledger__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0 1.2rem;
+  /* Recuo horizontal: o campo dourado do hover veste a linha inteira, então
+     sem ele o realce encosta no nome e no preço. O fio superior continua
+     ocupando toda a largura da coluna — só o conteúdo recua. */
+  padding: 1.35rem clamp(0.85rem, 1.8vw, 1.15rem);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent);
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+/* Todos os serviços sempre presentes; o foco (hover ou teclado) acende um. */
+.service-ledger__row:hover,
+.service-ledger__row:focus-within {
+  background: var(--color-gold);
+  color: var(--color-ground);
+}
+
+.service-ledger h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--type-title);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.service-ledger p {
+  margin: 0.3rem 0 0;
+  color: var(--color-ink-soft);
+  font-size: var(--type-body-sm);
+  line-height: 1.55;
+  transition: color 180ms ease;
+}
+
+.service-ledger__row:hover p,
+.service-ledger__row:focus-within p { color: color-mix(in srgb, var(--color-ground) 78%, transparent); }
+
+.service-ledger__price {
+  text-align: right;
+  color: var(--color-gold-soft);
+  font-size: var(--type-price);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  transition: color 180ms ease;
+}
+
+/* "a partir de" recua para cinza: quem carrega o valor é o número. */
+.service-ledger__from {
+  margin-right: 0.35rem;
+  color: var(--color-ink-soft);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: color 180ms ease;
+}
+
+.service-ledger__row:hover .service-ledger__price,
+.service-ledger__row:focus-within .service-ledger__price { color: var(--color-ground); }
+
+.service-ledger__row:hover .service-ledger__from,
+.service-ledger__row:focus-within .service-ledger__from {
+  color: color-mix(in srgb, var(--color-ground) 72%, transparent);
+}
+
+/* Pré-esconde as linhas só quando o JS assumiu a cena (`data-reveal` escrito no
+   carregamento): sem script nenhum, a lista nasce visível e nunca depende de
+   animação para existir. */
+.service-ledger[data-reveal]:not([data-revealed]) .service-ledger__row {
+  opacity: 0;
+}
+
+/* A lista chega como lista: nove irmãos, passo curto, atados ao atributo de
+   chegada — antes da observação os itens estão no estado visível. O passo cai
+   de 70ms para 40ms para o atraso total não passar de ~640ms. */
+.service-ledger[data-revealed] .service-ledger__row {
+  animation: ledger-row-in 320ms var(--ease-settle) backwards;
+  animation-delay: calc(var(--reveal-step) * 40ms);
+}
+
+@keyframes ledger-row-in {
+  from { opacity: 0; transform: translateY(0.6rem); }
+  to { opacity: 1; transform: none; }
+}
+
+.service-ledger__row:nth-child(1) { --reveal-step: 0; }
+.service-ledger__row:nth-child(2) { --reveal-step: 1; }
+.service-ledger__row:nth-child(3) { --reveal-step: 2; }
+.service-ledger__row:nth-child(4) { --reveal-step: 3; }
+.service-ledger__row:nth-child(5) { --reveal-step: 4; }
+.service-ledger__row:nth-child(6) { --reveal-step: 5; }
+.service-ledger__row:nth-child(7) { --reveal-step: 6; }
+.service-ledger__row:nth-child(8) { --reveal-step: 7; }
+.service-ledger__row:nth-child(9) { --reveal-step: 8; }
+
+/* Galeria — seis ilustrações locais. O desenho é o conteúdo; a moldura só
+   separa a peça do fundo, como uma folha de contato. */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.gallery-card {
+  position: relative;
+  margin: 0;
+  border: 1px solid var(--color-rule);
+  background: var(--color-surface);
+  transition: border-color 180ms ease;
+}
+
+.gallery-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.gallery-card:hover {
+  border-color: color-mix(in srgb, var(--color-gold) 65%, var(--color-rule));
+}
+
+.gallery-card:hover::after {
+  opacity: 1;
+}
+
+.gallery-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.gallery-card figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 1rem 1.1rem 1.15rem;
+  border-top: 1px solid var(--color-rule);
+}
+
+.gallery-card__title {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.gallery-card__note {
+  color: var(--color-ink-soft);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+.gallery__note {
+  margin: 1.5rem 0 0;
+  color: var(--color-ink-soft);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+
+/* Contato — colofão de carvão */
+.section--contact { background: var(--color-surface); }
+
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(17rem, 0.85fr);
+  align-items: start;
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
+
+.contact__intro p:not(.contact__status) { max-width: 38rem; }
+
+.contact__intro .action { margin-top: 1.75rem; }
+
+.contact__status {
+  margin: 1rem 0 0;
+  color: var(--color-ink-soft);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+
+.contact__colophon {
+  padding-left: clamp(1.5rem, 3vw, 2.5rem);
+  border-left: 1px solid var(--color-rule);
+}
+
+.contact__colophon h3 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: var(--type-title);
+  font-weight: 500;
+}
+
+.contact__facts { margin: 0; }
+
+.contact__facts > div {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 0.5rem 1rem;
+  padding: 0.95rem 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+.contact__facts dt {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-ink-soft);
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Ícone de fato: traço fino, um só peso, no dourado tênue — o rótulo é que
+   nomeia, o ícone só ancora a linha. */
+.fact-icon {
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--color-gold-soft);
+}
+
+.contact__facts dd {
+  margin: 0;
+  font-size: var(--type-body-sm);
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+}
+
+.contact__map {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  margin-top: 1.5rem;
+  border: 1px solid var(--color-rule);
+  border-radius: 0;
+  object-fit: cover;
+}
+
+.contact__map-note {
+  margin: 0.7rem 0 0;
+  color: var(--color-ink-soft);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+/* O colofão da direita é mais alto que o convite. No desktop, o horário desce
+   para o pé da coluna esquerda e ganha o mesmo fio dos fatos: a assimetria
+   passa a ter um fecho em vez de um vazio. */
+@media (min-width: 901px) {
+  .contact__intro {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+  }
+
+  .contact__intro .action { align-self: flex-start; }
+
+  .contact__status {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-rule);
+  }
+}
+
+/* Rodapé — linha de fólio */
+.site-footer {
+  border-top: 1px solid var(--color-rule);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding-block: 1.75rem;
+  color: var(--color-ink-soft);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+
+.site-footer p { margin: 0; }
+
+.site-footer__handle {
+  color: var(--color-gold-soft);
+  font-weight: 700;
+}
+
+.site-footer__note {
+  flex-basis: 100%;
+  max-width: 76ch;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-rule);
+  color: var(--color-ink-soft);
+  font-size: var(--type-caption);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Evita uma palavra órfã na última linha dos textos de apoio. Onde o motor
+   ainda não entende `pretty`, a quebra normal permanece. */
+.section__intro,
+.contact__status,
+.gallery__note,
+.contact__map-note,
+.site-footer__note {
+  text-wrap: pretty;
+}
+
+/* Avaliações — prova social entre a galeria e o convite final.
+   As cartas são chapas de Surface sobre o Ground, com fio de 1px e nenhuma
+   sombra, no mesmo vocabulário editorial do resto da página. Os textos e
+   nomes são fictícios e cada carta se identifica como depoimento
+   ilustrativo; não há integração com Google nem nota média. */
+.section--reviews h2 { max-width: none; }
+
+.icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.review-card {
+  display: flex;
+  width: 100%;
+  max-width: 46rem;
+  justify-self: center;
+}
+
+.review-card__figure {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  margin: 0;
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  border: 1px solid var(--color-rule);
+  background: var(--color-surface);
+  transition: border-color 180ms ease;
+}
+
+.review-card:hover .review-card__figure {
+  border-color: color-mix(in srgb, var(--color-gold) 65%, var(--color-rule));
+}
+
+.review-card__rating {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.review-stars {
+  display: inline-flex;
+  gap: 0.15rem;
+  color: var(--color-gold-soft);
+}
+
+.review-stars svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+}
+
+.review-stars--filled svg {
+  fill: currentColor;
+  stroke: none;
+}
+
+.review-card__rating-note {
+  color: var(--color-ink-soft);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.section--reviews .review-card__quote {
+  flex: 1;
+  margin: 0;
+}
+
+.section--reviews .review-card__quote p {
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+}
+
+.review-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-rule);
+}
+
+.review-card__author {
+  color: var(--color-ink);
+  font-size: var(--type-body-sm);
+  font-weight: 600;
+}
+
+.review-card__source {
+  color: var(--color-ink-soft);
+  font-size: var(--type-caption);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .reviews__grid { grid-template-columns: minmax(0, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .review-card__rating { justify-content: center; }
+  .review-card__meta { align-items: center; text-align: center; }
+  .section--reviews .review-card__quote p { text-align: center; }
+}
+
+/* Breakpoints */
+/* Tablet e telefone: o herói abandona o split e empilha centralizado. Antes o
+   emblema continuava na metade direita sangrando até a borda, e em tela menor
+   isso lia como desalinhado; agora a marca vira uma chapa 4/5 centrada logo
+   abaixo do texto, na mesma lógica simétrica do telefone. A chapa tem teto de
+   largura para não esticar desproporcional nas larguras de tablet. */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .hero__text {
+    grid-column: 1;
+    padding: 3rem clamp(1.5rem, 4vw, 3rem) 2.25rem;
+    text-align: center;
+  }
+
+  #hero-title,
+  .hero__subtitle,
+  .hero__deck,
+  .hero__intro,
+  .hero__meta {
+    margin-inline: auto;
+  }
+
+  .hero__action { align-self: center; }
+
+  .hero__media {
+    grid-column: 1;
+    width: min(100%, 30rem);
+    margin-inline: auto;
+    aspect-ratio: 4 / 5;
+  }
+
+  .contact { grid-template-columns: minmax(0, 1fr); }
+
+  .contact__colophon {
+    padding: 2rem 0 0;
+    border-top: 1px solid var(--color-rule);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  :root { --scroll-offset: 4.75rem; }
+
+  .site-header {
+    flex-wrap: wrap;
+    gap: 0 1rem;
+    min-height: 4.25rem;
+    padding-block: 0.6rem;
+  }
+
+  html[data-nav-toggle="ready"] .site-nav__toggle { display: inline-flex; }
+
+  /* A marca pode encolher e quebrar em 200% de zoom; o botão não. */
+  .brand__text { min-width: 0; }
+
+  html[data-nav-toggle="ready"] .site-nav {
+    display: none;
+    flex: none;
+    width: 100%;
+    order: 1;
+  }
+
+  html[data-nav-toggle="ready"] .site-nav[data-open] { display: block; }
+
+  html[data-nav-toggle="ready"] .site-nav[data-open] .site-nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin-top: 0.6rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  html[data-nav-toggle="ready"] .site-nav[data-open] .site-nav a,
+  html[data-nav-toggle="ready"] .site-nav[data-open] .site-nav__cta-button {
+    justify-content: flex-start;
+    width: 100%;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  html[data-nav-toggle="ready"] .site-nav[data-open] .site-nav__list li {
+    animation: nav-row-in 200ms var(--ease-settle) backwards;
+  }
+
+  html[data-nav-toggle="ready"] .site-nav[data-open] .site-nav__list li:nth-child(1) { animation-delay: 0ms; }
+  html[data-nav-toggle="ready"] .site-nav[data-open] .site-nav__list li:nth-child(2) { animation-delay: 40ms; }
+  html[data-nav-toggle="ready"] .site-nav[data-open] .site-nav__list li:nth-child(3) { animation-delay: 80ms; }
+  html[data-nav-toggle="ready"] .site-nav[data-open] .site-nav__list li:nth-child(4) { animation-delay: 120ms; }
+  html[data-nav-toggle="ready"] .site-nav[data-open] .site-nav__list li:nth-child(5) { animation-delay: 160ms; }
+
+  /* Serviços voltam a uma coluna: largura curta não comporta duas metades. */
+  .service-ledger {
+    grid-auto-flow: row;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+}
+
+/* Telefone: o resto da página acompanha o herói e centraliza. A chapa do
+   emblema já veio empilhada e centrada do breakpoint de 900px; aqui só se
+   aperta a largura de leitura. */
+@media (max-width: 640px) {
+  /* A página inteira centraliza no telefone: cada seção se alinha ao meio
+     como o herói - títulos, intros, razão de preços, contato e fólio. O h2 do
+     contato tem teto de 17ch, então precisa do mesmo margin auto para o texto
+     centrado cair no eixo da página em vez de encostar à esquerda. */
+  .section__heading,
+  .section__intro,
+  .contact__intro,
+  .contact__intro h2,
+  .contact__status,
+  .contact__colophon {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .contact__intro .action { margin-inline: auto; }
+
+  /* A razão de preços vira coluna única centrada: nome, descrição e valor
+     empilhados e alinhados pelo eixo do meio. */
+  .service-ledger__row {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 0.4rem;
+    text-align: center;
+  }
+
+  .service-ledger__price { text-align: center; }
+
+  .contact__facts > div {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    text-align: center;
+  }
+
+  .contact__facts dt { justify-content: center; }
+
+  .site-footer__inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .section__content, .site-footer__inner { width: min(100% - 2rem, var(--stage)); }
+
+  .site-header { padding-inline: 1rem; }
+
+  .hero__text { padding: 2.25rem 1rem 2rem; }
+  .section { padding-block: 3.75rem; }
+  .service-ledger__row { padding-block: 1.15rem; }
+  .contact__facts > div { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
+  .site-footer__inner { flex-direction: column; align-items: center; }
+}
+
+/* No menor telefone a galeria mantém as duas colunas, mas a legenda precisa de
+   mais largura útil: o padding e o corpo cedem antes do desenho. */
+@media (max-width: 360px) {
+  .gallery-grid { gap: 0.75rem; }
+
+  .gallery-card figcaption {
+    gap: 0.15rem;
+    padding: 0.8rem 0.7rem 0.95rem;
+  }
+
+  .gallery-card__title {
+    font-size: 0.95rem;
+    line-height: 1.15;
+  }
+
+  .gallery-card__note {
+    font-size: var(--type-caption);
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  /* Toda animação deste arquivo termina no estado visível: colapsar custa
+     movimento, nunca conteúdo. */
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+  }
+}

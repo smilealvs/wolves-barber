@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Ilustração de um corte fade">
+  <title>Corte fade</title>
+  <defs>
+    <pattern id="dots-fade" width="18" height="18" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#35302a"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="1000" fill="#141312"/>
+  <rect x="22" y="22" width="756" height="956" fill="none" stroke="#35302a" stroke-width="2"/>
+  <circle cx="400" cy="460" r="310" fill="#1a1917"/>
+  <circle cx="400" cy="460" r="310" fill="url(#dots-fade)"/>
+  <circle cx="400" cy="460" r="310" fill="none" stroke="#2b2824" stroke-width="2"/>
+  <path d="M330 320 C390 245 500 235 548 300 C568 330 575 370 560 410 C545 380 515 360 480 360 C440 360 405 380 380 410 C365 380 345 350 330 320 Z" fill="#c9a45c"/>
+  <g fill="none" stroke="#f5f2eb" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M320 760 L320 650 C320 610 310 580 290 540 C260 470 270 380 330 320 C380 270 460 260 510 300 C545 328 560 375 550 415 C542 445 525 465 525 485 C525 505 545 520 555 535 C565 550 555 565 538 570 L532 595 C532 635 505 660 475 670 L475 760"/>
+    <path d="M386 458 C372 440 376 416 396 410 C416 418 416 444 402 460"/>
+    <path d="M395 445 C388 435 392 424 401 421" stroke-width="3"/>
+    <path d="M470 370 C485 362 500 365 510 375"/>
+    <path d="M545 525 C555 528 560 538 552 545"/>
+    <path d="M535 560 C548 558 556 564 552 572"/>
+  </g>
+  <path d="M465 350 C485 342 505 346 515 356" fill="none" stroke="#c9a45c" stroke-width="4" stroke-linecap="round"/>
+  <path d="M380 410 C400 360 450 330 500 330" fill="none" stroke="#a5823e" stroke-width="4" stroke-linecap="round"/>
+  <g fill="none" stroke="#a5823e" stroke-width="4" stroke-linecap="round" opacity=".9">
+    <path d="M340 480 C325 510 322 545 330 580"/>
+    <path d="M355 475 C342 505 340 540 348 575"/>
+    <path d="M370 470 C360 500 358 535 365 565"/>
+  </g>
+  <g fill="none" stroke="#35302a" stroke-width="4" stroke-linecap="round">
+    <path d="M320 760 C270 820 235 880 225 950"/>
+    <path d="M475 760 C510 820 550 880 580 950"/>
+    <path d="M320 760 C370 800 430 800 475 760"/>
+  </g>
+  <path d="M80 900 H180" stroke="#c9a45c" stroke-width="3"/>
+</svg>

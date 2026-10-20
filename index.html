@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Wolves Barber — corte, barba e acabamento sem pressa em Jardim Noturno, São Paulo. Conheça os serviços, a galeria e o espaço."
+    />
+    <meta name="theme-color" content="#111110" />
+    <title>Wolves Barber — Barbearia em Jardim Noturno, São Paulo</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Wolves Barber" />
+    <meta property="og:title" content="Wolves Barber — Corte, barba e presença." />
+    <meta
+      property="og:description"
+      content="Uma barbearia de bairro com ritual de casa: corte, barba e acabamento sem pressa. Jardim Noturno, São Paulo."
+    />
+    <meta property="og:image" content="assets/images/og-cover.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Selo da Wolves Barber com cabeça de lobo dourada e o nome Wolves Barber sobre fundo escuro"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Wolves Barber — Corte, barba e presença." />
+    <meta
+      name="twitter:description"
+      content="Uma barbearia de bairro com ritual de casa: corte, barba e acabamento sem pressa. Jardim Noturno, São Paulo."
+    />
+    <meta name="twitter:image" content="assets/images/og-cover.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="Selo da Wolves Barber com cabeça de lobo dourada e o nome Wolves Barber sobre fundo escuro"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HairSalon",
+        "name": "Wolves Barber",
+        "description": "Wolves Barber — corte, barba e acabamento sem pressa em Jardim Noturno, São Paulo.",
+        "telephone": "+551140028922",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Alameda da Lua, 42",
+          "addressLocality": "São Paulo",
+          "addressRegion": "SP",
+          "addressCountry": "BR"
+        },
+        "openingHours": ["Tu-Sa 09:00-21:00", "Su 09:00-15:00"],
+        "priceRange": "R$ 15–150"
+      }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="assets/images/wolves-favicon.svg" />
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Wolves Barber — início">
+        <img class="brand__logo" src="assets/images/wolves-icon.svg" alt="" width="44" height="44" />
+        <span class="brand__text">
+          <span class="brand__name">Wolves</span>
+          <span class="brand__subtitle">Barber</span>
+        </span>
+      </a>
+      <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="site-nav__toggle-label">Menu</span>
+        <span class="site-nav__toggle-bars" aria-hidden="true"></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Navegação principal">
+        <ul class="site-nav__list">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li class="site-nav__cta">
+            <button
+              class="site-nav__cta-button"
+              type="button"
+              aria-describedby="demo-note"
+              title="Demonstração de portfólio — agendamento não conectado"
+            >
+              <svg class="icon-whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"
+                />
+              </svg>
+              Agendar
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="conteudo">
+      <section id="inicio" class="hero" aria-labelledby="hero-title">
+        <div class="hero__text">
+          <h1 id="hero-title">
+            Seu estilo.
+            <span class="hero__title-line">Sua identidade.</span>
+          </h1>
+          <p class="hero__subtitle">Mais que um corte: um ritual de presença.</p>
+          <p class="hero__deck">
+            Corte, barba e acabamento feitos <em>sem pressa</em>, no seu ritmo — com atenção de verdade e preço honesto.
+          </p>
+          <p class="hero__intro">
+            A Wolves Barber é um conceito de barbearia criado para valorizar a atenção aos detalhes, o estilo pessoal e
+            uma experiência de cuidado sem pressa. Cada atendimento é planejado para o seu tipo de cabelo e barba — com
+            hora marcada, conversa boa e acabamento de verdade.
+          </p>
+          <p class="hero__meta">
+            Terça a sábado, 9h às 21h · Domingo, 9h às 15h · Alameda da Lua, 42 — Jardim Noturno, São Paulo
+          </p>
+          <button
+            class="action hero__action"
+            type="button"
+            aria-describedby="demo-note"
+            title="Demonstração de portfólio — agendamento não conectado"
+          >
+            <svg class="icon-whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"
+              />
+            </svg>
+            Agendar pelo WhatsApp
+          </button>
+        </div>
+        <div class="hero__media">
+          <img
+            class="hero__mark"
+            src="assets/images/wolves-hero.svg"
+            alt=""
+            width="1200"
+            height="1500"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <p class="hero__signature" aria-hidden="true"><span>Wolves</span><span>Barber</span></p>
+        </div>
+      </section>
+
+      <section id="servicos" class="section section--services" aria-labelledby="servicos-title">
+        <div class="section__content">
+          <div class="section__heading">
+            <h2 id="servicos-title">Precisão em cada detalhe.</h2>
+            <p class="section__intro">Serviços essenciais para cuidar do seu estilo com atenção e acabamento.</p>
+          </div>
+          <ul class="service-ledger" data-reveal-target aria-label="Serviços e preços">
+            <li class="service-ledger__row">
+              <div class="service-ledger__info">
+                <h3>Corte</h3>
+                <p>Corte personalizado para o seu estilo.</p>
+              </div>
+              <span class="service-ledger__price">R$ 55,00</span>
+            </li>
+            <li class="service-ledger__row">
+              <div class="service-ledger__info">
+                <h3>Barba</h3>
+                <p>Modelagem e acabamento da barba.</p>
+              </div>
+              <span class="service-ledger__price">R$ 45,00</span>
+            </li>
+            <li class="service-ledger__row">
+              <div class="service-ledger__info">
+                <h3>Corte e barba</h3>
+                <p>Corte e barba completos no mesmo atendimento.</p>
+              </div>
+              <span class="service-ledger__price">R$ 90,00</span>
+            </li>
+            <li class="service-ledger__row">
+              <div class="service-ledger__info">
+                <h3>Progressiva</h3>
+                <p>Alisamento que reduz volume e frizz.</p>
+              </div>
+              <span class="service-ledger__price"><span class="service-ledger__from">a partir de</span>R$ 120,00</span>
+            </li>
+            <li class="service-ledger__row">
+              <div class="service-ledger__info">
+                <h3>Relaxamento</h3>
+                <p>Reduz o volume da raiz sem alisar de vez.</p>
+              </div>
+              <span class="service-ledger__price"><span class="service-ledger__from">a partir de</span>R$ 60,00</span>
+            </li>
+            <li class="service-ledger__row">
+              <div class="service-ledger__info">
+                <h3>Luzes</h3>
+                <p>Mechas e iluminado para clarear o cabelo.</p>
+              </div>
+              <span class="service-ledger__price"><span class="service-ledger__from">a partir de</span>R$ 150,00</span>
+            </li>
+            <li class="service-ledger__row">
+              <div class="service-ledger__info">
+                <h3>Sobrancelha</h3>
+                <p>Alinhamento e desenho no formato do rosto.</p>
+              </div>
+              <span class="service-ledger__price">R$ 15,00</span>
+            </li>
+            <li class="service-ledger__row">
+              <div class="service-ledger__info">
+                <h3>Depilação nasal/ouvido</h3>
+                <p>Remoção de pelos do nariz e das orelhas.</p>
+              </div>
+              <span class="service-ledger__price">R$ 15,00</span>
+            </li>
+            <li class="service-ledger__row">
+              <div class="service-ledger__info">
+                <h3>Pézinho</h3>
+                <p>Acabamento da nuca e das laterais.</p>
+              </div>
+              <span class="service-ledger__price">R$ 15,00</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="galeria" class="section section--gallery" aria-labelledby="galeria-title">
+        <div class="section__content">
+          <div class="section__heading">
+            <h2 id="galeria-title">O trabalho, em detalhe.</h2>
+            <p class="section__intro">
+              Uma série de ilustrações da casa: o corte, a barba, a navalha e o ritual da cadeira. Peças originais
+              criadas para a Wolves Barber.
+            </p>
+          </div>
+          <div class="gallery-grid">
+            <figure class="gallery-card">
+              <img
+                src="assets/images/fade.jpg"
+                alt="Ilustração de perfil com corte fade e marcações douradas"
+                width="800"
+                height="1000"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                <span class="gallery-card__title">Corte fade</span>
+                <span class="gallery-card__note">Acabamento em camadas</span>
+              </figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img
+                src="assets/images/barba.jpg"
+                alt="Ilustração de perfil com barba desenhada em dourado"
+                width="800"
+                height="1000"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                <span class="gallery-card__title">Barba desenhada</span>
+                <span class="gallery-card__note">Contorno e volume</span>
+              </figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img
+                src="assets/images/toalha.jpg"
+                alt="Ilustração de navalha, pincel e toalha quente"
+                width="800"
+                height="1000"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                <span class="gallery-card__title">Navalha e toalha quente</span>
+                <span class="gallery-card__note">O ritual da barba</span>
+              </figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img
+                src="assets/images/cadeira.jpg"
+                alt="Ilustração da cadeira de barbeiro sob a lâmpada"
+                width="800"
+                height="1000"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                <span class="gallery-card__title">A cadeira</span>
+                <span class="gallery-card__note">O centro da casa</span>
+              </figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img
+                src="assets/images/navalha.jpg"
+                alt="Ilustração de tesoura, máquina e pente"
+                width="800"
+                height="1000"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                <span class="gallery-card__title">As ferramentas</span>
+                <span class="gallery-card__note">Precisão de ofício</span>
+              </figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img
+                src="assets/images/image.jpg"
+                alt="Selo da Wolves Barber com cabeça de lobo dourada"
+                width="800"
+                height="1000"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                <span class="gallery-card__title">A assinatura</span>
+                <span class="gallery-card__note">Wolves Barber</span>
+              </figcaption>
+            </figure>
+          </div>
+          <p class="gallery__note">Ilustrações originais criadas para esta marca fictícia.</p>
+        </div>
+      </section>
+
+      <section id="avaliacoes" class="section section--reviews" aria-labelledby="avaliacoes-title">
+        <div class="section__content">
+          <svg class="icon-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+            <symbol id="icon-star" viewBox="0 0 24 24">
+              <path d="M12 2.4l2.95 5.98 6.6.96-4.78 4.66 1.13 6.58L12 17.47l-5.9 3.11 1.13-6.58L2.45 9.34l6.6-.96z" />
+            </symbol>
+          </svg>
+
+          <div class="section__heading">
+            <h2 id="avaliacoes-title">O que nossos clientes dizem.</h2>
+            <p class="section__intro">
+              Depoimentos ilustrativos, criados para esta demonstração. Nenhuma avaliação real foi reproduzida.
+            </p>
+          </div>
+
+          <ul class="reviews__grid">
+            <li class="review-card">
+              <figure class="review-card__figure">
+                <div class="review-card__rating">
+                  <span class="review-stars review-stars--filled" role="img" aria-label="5 de 5 estrelas">
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                  </span>
+                  <span class="review-card__rating-note" aria-hidden="true">5,0</span>
+                </div>
+                <blockquote class="review-card__quote">
+                  <p>
+                    O corte saiu exatamente como eu queria. Atendimento calmo, conversa boa e aquele acabamento que a
+                    gente sente na semana inteira.
+                  </p>
+                </blockquote>
+                <figcaption class="review-card__meta">
+                  <span class="review-card__author">Rafael M.</span>
+                  <span class="review-card__source">Depoimento ilustrativo</span>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="review-card">
+              <figure class="review-card__figure">
+                <div class="review-card__rating">
+                  <span class="review-stars review-stars--filled" role="img" aria-label="5 de 5 estrelas">
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                  </span>
+                  <span class="review-card__rating-note" aria-hidden="true">5,0</span>
+                </div>
+                <blockquote class="review-card__quote">
+                  <p>
+                    Cheguei sem saber o que pedir e saí com um estilo que combinava comigo. A atenção aos detalhes faz
+                    diferença.
+                  </p>
+                </blockquote>
+                <figcaption class="review-card__meta">
+                  <span class="review-card__author">Diego S.</span>
+                  <span class="review-card__source">Depoimento ilustrativo</span>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="review-card">
+              <figure class="review-card__figure">
+                <div class="review-card__rating">
+                  <span class="review-stars review-stars--filled" role="img" aria-label="5 de 5 estrelas">
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                    <svg viewBox="0 0 24 24" focusable="false"><use href="#icon-star"></use></svg>
+                  </span>
+                  <span class="review-card__rating-note" aria-hidden="true">5,0</span>
+                </div>
+                <blockquote class="review-card__quote">
+                  <p>
+                    A barba ficou impecável e o ritual da toalha quente é outro nível. Virou meu programa de sábado.
+                  </p>
+                </blockquote>
+                <figcaption class="review-card__meta">
+                  <span class="review-card__author">André L.</span>
+                  <span class="review-card__source">Depoimento ilustrativo</span>
+                </figcaption>
+              </figure>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="contato" class="section section--contact" aria-labelledby="contato-title">
+        <div class="section__content contact">
+          <div class="contact__intro">
+            <h2 id="contato-title">Vamos renovar seu estilo?</h2>
+            <p>Conheça os serviços da Wolves Barber e combine seu próximo atendimento.</p>
+
+            <button
+              class="action"
+              type="button"
+              aria-describedby="demo-note"
+              title="Demonstração de portfólio — agendamento não conectado"
+            >
+              <svg class="icon-whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"
+                />
+              </svg>
+              Agendar pelo WhatsApp
+            </button>
+            <p class="contact__status">Atendimento de terça a sábado, das 9h às 21h; domingo, das 9h às 15h.</p>
+          </div>
+          <aside class="contact__colophon" aria-labelledby="contact-details-title">
+            <h3 id="contact-details-title">Informações da barbearia</h3>
+            <dl class="contact__facts">
+              <div>
+                <dt>
+                  <svg
+                    class="fact-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
+                    />
+                  </svg>
+                  <span>Telefone</span>
+                </dt>
+                <dd>(11) 4002-8922</dd>
+              </div>
+              <div>
+                <dt>
+                  <svg
+                    class="fact-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7.5V12l3.2 1.9" />
+                  </svg>
+                  <span>Horário</span>
+                </dt>
+                <dd>Terça a sábado, das 9h às 21h. Domingo, das 9h às 15h.</dd>
+              </div>
+              <div>
+                <dt>
+                  <svg
+                    class="fact-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5" />
+                    <circle cx="12" cy="12" r="3.9" />
+                    <circle cx="17.1" cy="6.9" r="0.9" fill="currentColor" stroke="none" />
+                  </svg>
+                  <span>Instagram</span>
+                </dt>
+                <dd>@wolvesbarber</dd>
+              </div>
+              <div>
+                <dt>
+                  <svg
+                    class="fact-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M20 10c0 5.5-8 11-8 11s-8-5.5-8-11a8 8 0 0 1 16 0z" />
+                    <circle cx="12" cy="10" r="2.6" />
+                  </svg>
+                  <span>Endereço</span>
+                </dt>
+                <dd>Alameda da Lua, 42 — Jardim Noturno, São Paulo — SP</dd>
+              </div>
+            </dl>
+            <img
+              class="contact__map"
+              src="assets/images/map-wolves.svg"
+              alt="Mapa ilustrativo com a localização da Wolves Barber no Jardim Noturno"
+              width="800"
+              height="500"
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="contact__map-note">Mapa ilustrativo — a localização é fictícia.</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p>
+          Wolves Barber <span aria-hidden="true">·</span> Alameda da Lua, 42 — Jardim Noturno, São Paulo
+          <span aria-hidden="true">·</span> Ter a sáb, 9h às 21h; dom, 9h às 15h
+        </p>
+        <p class="site-footer__handle">@wolvesbarber</p>
+        <p id="demo-note" class="site-footer__note">
+          Projeto fictício de portfólio. Marca, endereço, telefone, depoimentos e imagens são ilustrativos. O
+          agendamento não está conectado.
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
